@@ -45,3 +45,24 @@ def waitfor(command, timeout):
             os.waitpid(-1, os.WNOHANG)
             return None
     return process.stdout.readlines()
+
+
+    '''
+	TODO: This method probably needs to go, but keeping it for now as reference.
+    def prepareBackupsForTransfer ():
+		path_to_backup_files = []
+		for root, dirs, files in os.walk(src):
+			for file in files:
+				filepath = os.path.join(root,file)
+				fileParentName = os.path.basename(os.path.dirname(filepath))
+				destfilepath = os.path.join(dest,fileParentName,file)
+				#There is probably a better way to do this
+				if fileParentName in expected_backups and file in expected_backups[fileParentName]:
+					print "[" + file + "] is a backup file, adding it to the stack"
+					path_to_backup_files.append(filepath)
+					copyfile(filepath,destfilepath)
+				else:
+					print "[" + file + "] is not a backup file, passing it by"
+
+		return path_to_backup_files
+'''
