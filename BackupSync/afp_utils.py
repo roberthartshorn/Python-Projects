@@ -5,22 +5,26 @@ def afp_mount(src_url,dest_url):
 	src_mountpoint='/Volumes/' + os.path.basename(src_url).replace('"','')
 	dest_mountpoint='/Volumes/' + os.path.basename(dest_url).replace('"','')
 
-	print src_mountpoint
-
 	targets = {
 		'src': {
-			'isMounted': True if os.path.exists(src_mountpoint) else False, 
-			'url': src_url
+			'volume': {
+				'is_mounted': True if os.path.exists(src_mountpoint) else False, 
+				'mount_point': src_mountpoint
+			},
+			'afp_share_url': src_url
 		}, 
 		'dest': {
-			'isMounted': True if os.path.exists(dest_mountpoint) else False, 
-			'url': dest_url
+			'volume': {
+				'is_mounted': True if os.path.exists(dest_mountpoint) else False, 
+				'mount_point': dest_mountpoint
+			},
+			'afp_share_url': dest_url
 		}
 	}
 
 	for key, value in targets.iteritems():
-		if targets[key]['isMounted'] is False:
-			print 'Will attempt to mount volume ' + key +  ' at: ' + targets[key]['url']
+		if targets[key]['volume']['is_mounted'] is False:
+			print 'Will attempt to mount volume ' + key +  ' at: ' + targets[key]['afp_share_url']
 		else:
 			print 'Volume ' + key + ' is already mounted'
 
