@@ -26,7 +26,7 @@ def afp_mount(src_url,dest_url):
 		if targets[key]['volume']['is_mounted'] is False:
 			print 'Will attempt to mount volume ' + key +  ' at: ' + targets[key]['afp_share_url']
 		else:
-			print 'Volume ' + key + ' is already mounted'
+			print 'Volume ' + targets[key]['volume']['mount_point'] + ' is already mounted'
 
 
 	#mount_string = '\'mount volume \"afp://sadmin:BRLa4rxx@fugue/S_B_RAID\"\''
